@@ -1,0 +1,16 @@
+package com.macondo.jewelry.security;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+
+public final class MessageDigestSupport {
+    private MessageDigestSupport() {
+    }
+
+    public static boolean constantTimeEquals(String expected, String actual) {
+        if (expected == null || actual == null) {
+            return false;
+        }
+        return MessageDigest.isEqual(expected.getBytes(StandardCharsets.UTF_8), actual.getBytes(StandardCharsets.UTF_8));
+    }
+}
