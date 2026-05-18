@@ -1,8 +1,7 @@
 package com.macondo.jewelry.order;
 
-import static com.macondo.jewelry.order.OrderDtos.OrderResponse;
-import static com.macondo.jewelry.order.OrderDtos.UpdateOrderStatusRequest;
-
+import com.macondo.jewelry.order.OrderDtos.OrderResponse;
+import com.macondo.jewelry.order.OrderDtos.UpdateOrderStatusRequest;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;

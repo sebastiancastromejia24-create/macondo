@@ -28,3 +28,12 @@ mvn spring-boot:run
 ```
 
 La base local usa H2 en memoria. Para produccion se debe configurar PostgreSQL y publicar el backend detras de HTTPS.
+
+## Endpoints principales
+
+- `POST /api/auth/register`, `POST /api/auth/login`
+- `GET /api/productos`, `GET /api/productos/{id}`
+- `POST /api/pedidos`, `GET /api/pedidos`, `GET /api/pedidos/{reference}`
+- `POST /api/pagos/crear`, `POST /api/pagos/webhook`
+- `GET/POST/PUT/PATCH/DELETE /api/admin/productos`
+- `GET /api/admin/pedidos?status=APPROVED`, `PATCH /api/admin/pedidos/{id}`

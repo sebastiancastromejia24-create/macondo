@@ -1,6 +1,6 @@
 package com.macondo.jewelry.product;
 
-import static com.macondo.jewelry.product.ProductDtos.ProductResponse;
+import com.macondo.jewelry.product.ProductDtos.ProductResponse;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,8 +1,7 @@
 package com.macondo.jewelry.order;
 
-import static com.macondo.jewelry.order.OrderDtos.CreateOrderRequest;
-import static com.macondo.jewelry.order.OrderDtos.OrderResponse;
-
+import com.macondo.jewelry.order.OrderDtos.CreateOrderRequest;
+import com.macondo.jewelry.order.OrderDtos.OrderResponse;
 import com.macondo.jewelry.security.AuthenticatedUser;
 import jakarta.validation.Valid;
 import java.util.List;

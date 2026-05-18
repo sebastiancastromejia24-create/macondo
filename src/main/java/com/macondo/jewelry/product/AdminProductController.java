@@ -1,7 +1,7 @@
 package com.macondo.jewelry.product;
 
-import static com.macondo.jewelry.product.ProductDtos.ProductRequest;
-import static com.macondo.jewelry.product.ProductDtos.ProductResponse;
+import com.macondo.jewelry.product.ProductDtos.ProductRequest;
+import com.macondo.jewelry.product.ProductDtos.ProductResponse;
 
 import jakarta.validation.Valid;
 import java.util.List;
