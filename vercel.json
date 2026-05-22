@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://TU-BACKEND-HTTPS.onrender.com/api/:path*"
+      "destination": "https://macondo-six.vercel.app/"
     },
     {
       "source": "/:path*",
