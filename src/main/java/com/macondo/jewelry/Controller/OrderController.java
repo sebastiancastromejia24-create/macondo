@@ -1,13 +1,10 @@
 package com.macondo.jewelry.Controller;
 
-
-import com.macondo.jewelry.Controller.Dtos.OrderDtos;
-import com.macondo.jewelry.Entity.ShippingAddress;
+import com.macondo.jewelry.Controller.dto.request.CreateOrderRequest;
+import com.macondo.jewelry.Controller.dto.response.OrderResponse;
 import com.macondo.jewelry.Mapper.OrderMapper;
-import com.macondo.jewelry.Service.OrderService;
-import com.macondo.jewelry.Controller.Dtos.OrderDtos.CreateOrderRequest;
-import com.macondo.jewelry.Controller.Dtos.OrderDtos.OrderResponse;
 import com.macondo.jewelry.Security.AuthenticatedUser;
+import com.macondo.jewelry.Service.OrderService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;

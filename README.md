@@ -25,6 +25,7 @@ La aplicacion usa Java 21 + Spring Boot 3.3.5 con arquitectura por capas:
 Modelo de negocio principal: `Product`, `Category`, `Material`, `CustomerOrder`, `ShippingAddress`, `PaymentTransaction` y `AppUser`. Incluye relaciones `ManyToMany` entre productos y materiales, y relaciones `ManyToOne/OneToMany` para categoria-productos, usuario-pedidos y pedido-transacciones.
 
 Documento complementario: `docs/ARQUITECTURA.md`.
+Guia para sustentar el codigo: `docs/GUIA_EXPOSICION.md`.
 
 ## Ejecucion local rapida
 
@@ -72,6 +73,8 @@ ADMIN_PASSWORD=admin12345
 
 Las llaves Wompi nunca deben subirse al repositorio. Deben configurarse en el panel del proveedor cloud.
 
+Para pruebas Sandbox usa llaves con prefijo `pub_test_`, `prv_test_`, `test_integrity_` o el equivalente mostrado por el dashboard. No uses llaves `pub_prod_` ni `prv_prod_` en ambientes de prueba. La llave privada solo es necesaria si el backend llama endpoints privados de Wompi; este proyecto usa el Widget Checkout, por eso el frontend recibe solo llave publica y firma de integridad generada en backend.
+
 ## Endpoints principales
 
 - `POST /api/v1/auth/register`
@@ -97,7 +100,15 @@ Las llaves Wompi nunca deben subirse al repositorio. Deben configurarse en el pa
 2. `POST /api/v1/pagos/crear` reserva el producto por 8 minutos, crea el pedido, calcula comision Wompi y devuelve `publicKey`, `reference`, `amountInCents` y `integritySignature`.
 3. El frontend abre el widget de Wompi sandbox.
 4. Wompi llama `POST /api/v1/pagos/webhook`.
-5. El backend valida firma, registra `PaymentTransaction`, evita reprocesar eventos repetidos y cambia el pedido a `APPROVED`, `FAILED_PAYMENT` o `CANCELLED`.
+5. El backend valida `X-Event-Checksum` o `signature.checksum`, registra `PaymentTransaction`, evita reprocesar eventos repetidos y cambia el pedido a `APPROVED`, `FAILED_PAYMENT` o `CANCELLED`.
+
+URL de eventos recomendada en Wompi:
+
+```text
+https://TU-DOMINIO-BACKEND/api/v1/pagos/webhook
+```
+
+Si usas `https://macondo-six.vercel.app/` como dominio publico, verifica que esa ruta reenvie realmente al backend Spring Boot. Wompi debe llamar el endpoint del backend, no solo la raiz del frontend.
 
 ## Despliegue recomendado
 

@@ -1,24 +1,21 @@
 package com.macondo.jewelry.Service;
 
-
-import com.macondo.jewelry.Controller.Dtos.OrderDtos;
-import com.macondo.jewelry.Controller.Dtos.PaymentDtos;
 import com.macondo.jewelry.Entity.PaymentStatus;
 import com.macondo.jewelry.Entity.PaymentTransaction;
-import com.macondo.jewelry.Entity.ShippingAddress;
 import com.macondo.jewelry.Integration.PaymentEmailService;
 import com.macondo.jewelry.Integration.WompiProperties;
 import com.macondo.jewelry.Integration.WompiSignatureService;
 import com.macondo.jewelry.Repository.PaymentTransactionRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.macondo.jewelry.Controller.dto.request.ShippingAddressRequest;
+import com.macondo.jewelry.Controller.dto.response.CreatePaymentResponse;
+import com.macondo.jewelry.Controller.dto.response.PaymentBreakdown;
 import com.macondo.jewelry.Common.BusinessException;
 import com.macondo.jewelry.Common.ResourceNotFoundException;
 import com.macondo.jewelry.Entity.CustomerOrder;
 import com.macondo.jewelry.Repository.OrderRepository;
-import com.macondo.jewelry.Service.OrderService;
 import com.macondo.jewelry.Entity.OrderStatus;
-import com.macondo.jewelry.Controller.Dtos.OrderDtos.ShippingAddressRequest;
 import com.macondo.jewelry.Entity.Product;
 import com.macondo.jewelry.Entity.AppUser;
 import java.math.BigDecimal;
@@ -59,29 +56,30 @@ public class PaymentService {
     }
 
     @Transactional
-    public PaymentDtos.CreatePaymentResponse createPayment(AppUser user, Long productId, ShippingAddressRequest shippingAddress) {
+    public CreatePaymentResponse createPayment(AppUser user, Long productId, ShippingAddressRequest shippingAddress) {
         Product product = productService.find(productId);
         long commissionCents = calculateCommission(product.getPriceCents());
         long totalCents = product.getPriceCents() + commissionCents;
         CustomerOrder order = orderService.createPendingOrder(user, productId, shippingAddress, commissionCents, totalCents);
         String signature = signatureService.integritySignature(order.getReference(), order.getTotalAmountCents());
-        return new PaymentDtos.CreatePaymentResponse(
+        return new CreatePaymentResponse(
                 properties.publicKey(),
                 properties.currency(),
                 order.getReference(),
                 order.getTotalAmountCents(),
                 signature,
-                new PaymentDtos.PaymentBreakdown(order.getProductAmountCents(), order.getWompiCommissionCents(), order.getTotalAmountCents()),
+                new PaymentBreakdown(order.getProductAmountCents(), order.getWompiCommissionCents(), order.getTotalAmountCents()),
                 order.getStatus()
         );
     }
 
     @Transactional
     public void processWebhook(String rawBody, String signature) {
-        if (!signatureService.isValidWebhookSignature(rawBody, signature)) {
+        JsonNode root = readWebhookRoot(rawBody);
+        if (!signatureService.isValidWebhookSignature(root, signature)) {
             throw new BusinessException(HttpStatus.UNAUTHORIZED, "Firma de webhook invalida");
         }
-        WebhookTransaction transaction = readTransaction(rawBody);
+        WebhookTransaction transaction = readTransaction(root);
         if (paymentTransactionRepository.findByWompiTransactionId(transaction.id()).isPresent()) {
             return;
         }
@@ -111,7 +109,7 @@ public class PaymentService {
             );
             return;
         }
-        if (status == PaymentStatus.DECLINED || status == PaymentStatus.VOIDED) {
+        if (status == PaymentStatus.DECLINED || status == PaymentStatus.VOIDED || status == PaymentStatus.ERROR) {
             order.updateStatus(OrderStatus.FAILED_PAYMENT);
             order.getProduct().release();
         }
@@ -122,9 +120,16 @@ public class PaymentService {
         return variable.setScale(0, RoundingMode.HALF_UP).longValue() + properties.fixedFeeCents();
     }
 
-    private WebhookTransaction readTransaction(String rawBody) {
+    private JsonNode readWebhookRoot(String rawBody) {
         try {
-            JsonNode root = objectMapper.readTree(rawBody);
+            return objectMapper.readTree(rawBody);
+        } catch (Exception ex) {
+            throw new BusinessException(HttpStatus.BAD_REQUEST, "Webhook invalido");
+        }
+    }
+
+    private WebhookTransaction readTransaction(JsonNode root) {
+        try {
             JsonNode transaction = root.path("data").path("transaction");
             String id = transaction.path("id").asText(null);
             String reference = transaction.path("reference").asText(null);
@@ -133,7 +138,7 @@ public class PaymentService {
                 throw new BusinessException(HttpStatus.BAD_REQUEST, "Webhook sin referencia");
             }
             id = (id == null || id.isBlank() ? reference : id) + "-" + status;
-            return new WebhookTransaction(id, reference, PaymentStatus.valueOf(status), transaction.path("amount_in_cents").asLong(0));
+            return new WebhookTransaction(id, reference, PaymentStatus.valueOf(status), amountInCents(transaction));
         } catch (IllegalArgumentException ex) {
             throw new BusinessException(HttpStatus.BAD_REQUEST, "Estado de pago invalido");
         } catch (BusinessException ex) {
@@ -141,6 +146,13 @@ public class PaymentService {
         } catch (Exception ex) {
             throw new BusinessException(HttpStatus.BAD_REQUEST, "Webhook invalido");
         }
+    }
+
+    private long amountInCents(JsonNode transaction) {
+        if (transaction.has("amount_in_cents")) {
+            return transaction.path("amount_in_cents").asLong(0);
+        }
+        return transaction.path("amountInCents").asLong(0);
     }
 
     private record WebhookTransaction(String id, String reference, PaymentStatus status, long amountInCents) {

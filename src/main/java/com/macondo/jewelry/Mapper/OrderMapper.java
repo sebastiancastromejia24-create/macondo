@@ -1,10 +1,7 @@
 package com.macondo.jewelry.Mapper;
 
-
-import com.macondo.jewelry.Controller.Dtos.OrderDtos;
+import com.macondo.jewelry.Controller.dto.response.OrderResponse;
 import com.macondo.jewelry.Entity.CustomerOrder;
-import com.macondo.jewelry.Entity.Product;
-import com.macondo.jewelry.Controller.Dtos.OrderDtos.OrderResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

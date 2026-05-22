@@ -1,7 +1,6 @@
 package com.macondo.jewelry.Service;
 
-
-import com.macondo.jewelry.Controller.Dtos.OrderDtos;
+import com.macondo.jewelry.Controller.dto.request.ShippingAddressRequest;
 import com.macondo.jewelry.Entity.CustomerOrder;
 import com.macondo.jewelry.Entity.OrderStatus;
 import com.macondo.jewelry.Entity.ShippingAddress;
@@ -33,7 +32,7 @@ public class OrderService {
     }
 
     @Transactional
-    public CustomerOrder createPendingOrder(AppUser user, Long productId, OrderDtos.ShippingAddressRequest addressRequest, long commissionCents, long totalCents) {
+    public CustomerOrder createPendingOrder(AppUser user, Long productId, ShippingAddressRequest addressRequest, long commissionCents, long totalCents) {
         Product product = productService.reserve(productId);
         ShippingAddress shippingAddress = saveAddress(user, addressRequest);
         CustomerOrder order = new CustomerOrder(
@@ -49,7 +48,7 @@ public class OrderService {
     }
 
     @Transactional
-    public CustomerOrder createPendingOrder(AppUser user, Long productId, OrderDtos.ShippingAddressRequest addressRequest) {
+    public CustomerOrder createPendingOrder(AppUser user, Long productId, ShippingAddressRequest addressRequest) {
         Product product = productService.reserve(productId);
         CustomerOrder order = new CustomerOrder(nextReference(), user, product, saveAddress(user, addressRequest), product.getPriceCents(), 0, product.getPriceCents());
         return orderRepository.save(order);
@@ -89,7 +88,7 @@ public class OrderService {
         return order;
     }
 
-    private ShippingAddress saveAddress(AppUser user, OrderDtos.ShippingAddressRequest request) {
+    private ShippingAddress saveAddress(AppUser user, ShippingAddressRequest request) {
         if (request == null) {
             return null;
         }

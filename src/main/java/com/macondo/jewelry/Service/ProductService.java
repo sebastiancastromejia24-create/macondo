@@ -1,7 +1,6 @@
 package com.macondo.jewelry.Service;
 
-
-import com.macondo.jewelry.Controller.Dtos.ProductDtos;
+import com.macondo.jewelry.Controller.dto.request.ProductRequest;
 import com.macondo.jewelry.Entity.Product;
 import com.macondo.jewelry.Entity.ProductStatus;
 import com.macondo.jewelry.Repository.ProductRepository;
@@ -65,7 +64,7 @@ public class ProductService {
     }
 
     @Transactional
-    public Product create(ProductDtos.ProductRequest request) {
+    public Product create(ProductRequest request) {
         return productRepository.save(new Product(
                 request.name(),
                 request.description(),
@@ -77,7 +76,7 @@ public class ProductService {
     }
 
     @Transactional
-    public Product update(Long id, ProductDtos.ProductRequest request) {
+    public Product update(Long id, ProductRequest request) {
         Product product = find(id);
         product.update(
                 request.name(),

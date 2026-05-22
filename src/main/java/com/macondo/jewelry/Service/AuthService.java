@@ -1,11 +1,9 @@
 package com.macondo.jewelry.Service;
 
-
-import com.macondo.jewelry.Controller.Dtos.AuthDtos;
+import com.macondo.jewelry.Controller.dto.request.LoginRequest;
+import com.macondo.jewelry.Controller.dto.request.RegisterRequest;
+import com.macondo.jewelry.Controller.dto.response.AuthResponse;
 import com.macondo.jewelry.Mapper.AuthMapper;
-import com.macondo.jewelry.Controller.Dtos.AuthDtos.AuthResponse;
-import com.macondo.jewelry.Controller.Dtos.AuthDtos.LoginRequest;
-import com.macondo.jewelry.Controller.Dtos.AuthDtos.RegisterRequest;
 import com.macondo.jewelry.Common.BusinessException;
 import com.macondo.jewelry.Common.ResourceNotFoundException;
 import com.macondo.jewelry.Security.JwtService;

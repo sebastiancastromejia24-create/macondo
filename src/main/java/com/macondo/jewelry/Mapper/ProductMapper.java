@@ -1,10 +1,8 @@
 package com.macondo.jewelry.Mapper;
 
-
-import com.macondo.jewelry.Controller.Dtos.ProductDtos;
+import com.macondo.jewelry.Controller.dto.response.ProductResponse;
 import com.macondo.jewelry.Entity.Product;
 import com.macondo.jewelry.Entity.Material;
-import com.macondo.jewelry.Controller.Dtos.ProductDtos.ProductResponse;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.mapstruct.Mapper;

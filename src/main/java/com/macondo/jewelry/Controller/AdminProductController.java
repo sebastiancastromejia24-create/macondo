@@ -1,11 +1,9 @@
 package com.macondo.jewelry.Controller;
 
-
-import com.macondo.jewelry.Controller.Dtos.ProductDtos;
+import com.macondo.jewelry.Controller.dto.request.ProductRequest;
+import com.macondo.jewelry.Controller.dto.response.ProductResponse;
 import com.macondo.jewelry.Mapper.ProductMapper;
 import com.macondo.jewelry.Service.ProductService;
-import com.macondo.jewelry.Controller.Dtos.ProductDtos.ProductRequest;
-import com.macondo.jewelry.Controller.Dtos.ProductDtos.ProductResponse;
 
 import jakarta.validation.Valid;
 import java.util.List;

@@ -1,10 +1,8 @@
 package com.macondo.jewelry.Controller;
 
-
-import com.macondo.jewelry.Controller.Dtos.ProductDtos;
+import com.macondo.jewelry.Controller.dto.response.ProductResponse;
 import com.macondo.jewelry.Mapper.ProductMapper;
 import com.macondo.jewelry.Service.ProductService;
-import com.macondo.jewelry.Controller.Dtos.ProductDtos.ProductResponse;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;

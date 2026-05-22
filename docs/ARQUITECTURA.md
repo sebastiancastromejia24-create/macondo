@@ -15,7 +15,7 @@ flowchart LR
 La responsabilidad de cada capa es:
 
 - Controller: recibe HTTP, valida DTOs y delega. No contiene reglas de negocio.
-- Controller/Dtos: define los contratos de entrada y salida de la API.
+- Controller/dto/request y Controller/dto/response: define contratos separados para entrada y salida de la API.
 - Service: contiene reglas del dominio: reserva, calculo de comision, cambio de estados, autorizacion por propietario.
 - Repository: usa Spring Data JPA para consultar y persistir entidades.
 - Entity: agrupa entidades JPA y enums del dominio.
@@ -55,7 +55,8 @@ Entidades de negocio:
 4. `WompiSignatureService` firma la referencia para el widget.
 5. Frontend abre widget Wompi con los datos devueltos por el backend.
 6. Wompi envia webhook.
-7. Backend valida firma, registra `PaymentTransaction` y actualiza pedido/producto.
+7. Backend valida `X-Event-Checksum` usando `signature.properties`, `timestamp` y el secreto de eventos.
+8. Backend registra `PaymentTransaction` y actualiza pedido/producto.
 
 ## Estados
 

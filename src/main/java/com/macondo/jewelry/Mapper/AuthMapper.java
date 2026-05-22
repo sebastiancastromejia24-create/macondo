@@ -1,8 +1,6 @@
 package com.macondo.jewelry.Mapper;
 
-
-import com.macondo.jewelry.Controller.Dtos.AuthDtos;
-import com.macondo.jewelry.Controller.Dtos.AuthDtos.AuthResponse;
+import com.macondo.jewelry.Controller.dto.response.AuthResponse;
 import com.macondo.jewelry.Entity.AppUser;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

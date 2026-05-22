@@ -1,12 +1,9 @@
 package com.macondo.jewelry.Controller;
 
-
-import com.macondo.jewelry.Controller.Dtos.PaymentDtos;
-import com.macondo.jewelry.Entity.ShippingAddress;
-import com.macondo.jewelry.Service.PaymentService;
-import com.macondo.jewelry.Controller.Dtos.PaymentDtos.CreatePaymentRequest;
-import com.macondo.jewelry.Controller.Dtos.PaymentDtos.CreatePaymentResponse;
+import com.macondo.jewelry.Controller.dto.request.CreatePaymentRequest;
+import com.macondo.jewelry.Controller.dto.response.CreatePaymentResponse;
 import com.macondo.jewelry.Security.AuthenticatedUser;
+import com.macondo.jewelry.Service.PaymentService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.Collections;

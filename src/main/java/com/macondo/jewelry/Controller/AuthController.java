@@ -1,11 +1,9 @@
 package com.macondo.jewelry.Controller;
 
-
-import com.macondo.jewelry.Controller.Dtos.AuthDtos;
+import com.macondo.jewelry.Controller.dto.request.LoginRequest;
+import com.macondo.jewelry.Controller.dto.request.RegisterRequest;
+import com.macondo.jewelry.Controller.dto.response.AuthResponse;
 import com.macondo.jewelry.Service.AuthService;
-import com.macondo.jewelry.Controller.Dtos.AuthDtos.AuthResponse;
-import com.macondo.jewelry.Controller.Dtos.AuthDtos.LoginRequest;
-import com.macondo.jewelry.Controller.Dtos.AuthDtos.RegisterRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;

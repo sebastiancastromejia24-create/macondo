@@ -5,84 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Macondo Joyeria</title>
     <link rel="stylesheet" href="/styles.css">
-    <script src="https://checkout.wompi.co/widget.js" defer></script>
     <script src="/app.js" defer></script>
 </head>
 <body>
 <header class="topbar">
-    <a class="brand" href="#catalogo">Macondo Joyeria</a>
-    <nav>
+    <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span>Macondo</span>
+        <small>Joyeria</small>
+    </a>
+    <nav class="main-nav" aria-label="Navegacion principal">
         <a href="#catalogo">Catalogo</a>
+        <a href="#checkout">Checkout</a>
         <a href="#pedidos">Pedidos</a>
         <a href="#admin">Admin</a>
     </nav>
+    <div class="session-chip" id="sessionInfo">Sin autenticar</div>
 </header>
 
-<main>
+<main id="inicio">
     <section class="hero">
-        <div class="hero-copy">
-            <p>Joyería artesanal colombiana</p>
+        <div class="hero-media" aria-hidden="true">
+            <img src="/images/portada.jpg" alt="">
+        </div>
+        <div class="hero-content">
+            <p class="eyebrow">Joyerias artesanales con pago sandbox</p>
             <h1>Macondo Joyeria</h1>
-            <span>Compra segura de anillos y manillas tejidas con integracion Wompi en modo sandbox.</span>
+            <p class="hero-lead">Catalogo, reservas temporales, pedidos y checkout Wompi integrados en un flujo listo para demostrar en clase.</p>
+            <div class="hero-actions">
+                <a class="button primary" href="#catalogo">Ver catalogo</a>
+                <a class="button ghost" href="#checkout">Datos de envio</a>
+            </div>
         </div>
+        <aside class="auth-shell" aria-label="Ingreso y registro">
+            <div class="auth-tabs" role="tablist" aria-label="Acceso">
+                <button class="tab is-active" type="button" data-auth-tab="login">Login</button>
+                <button class="tab" type="button" data-auth-tab="register">Registro</button>
+            </div>
+
+            <form id="loginForm" class="auth-form is-active" data-auth-panel="login">
+                <h2>Entrar</h2>
+                <label>Correo
+                    <input name="email" type="email" value="cliente@macondo.local" autocomplete="email" required>
+                </label>
+                <label>Contrasena
+                    <input name="password" type="password" value="cliente123" autocomplete="current-password" required>
+                </label>
+                <button class="button primary full" type="submit">Iniciar sesion</button>
+            </form>
+
+            <form id="registerForm" class="auth-form" data-auth-panel="register">
+                <h2>Crear cliente</h2>
+                <label>Nombre
+                    <input name="name" value="Cliente Demo" autocomplete="name" required>
+                </label>
+                <label>Correo
+                    <input name="email" type="email" value="cliente@macondo.local" autocomplete="email" required>
+                </label>
+                <label>Contrasena
+                    <input name="password" type="password" value="cliente123" minlength="8" autocomplete="new-password" required>
+                </label>
+                <button class="button primary full" type="submit">Crear cuenta</button>
+            </form>
+
+            <div class="auth-footer">
+                <button id="logoutBtn" class="link-button" type="button">Cerrar sesion</button>
+                <span>Admin: admin@macondo.local</span>
+            </div>
+        </aside>
     </section>
 
-    <section class="auth-panel">
-        <form id="loginForm">
-            <h2>Ingreso</h2>
-            <label>Correo <input name="email" type="email" value="cliente@macondo.local" required></label>
-            <label>Contrasena <input name="password" type="password" value="cliente123" required></label>
-            <button type="submit">Entrar</button>
-        </form>
-
-        <form id="registerForm">
-            <h2>Registro cliente</h2>
-            <label>Nombre <input name="name" value="Cliente Demo" required></label>
-            <label>Correo <input name="email" type="email" value="cliente@macondo.local" required></label>
-            <label>Contrasena <input name="password" type="password" value="cliente123" minlength="8" required></label>
-            <button type="submit">Crear cuenta</button>
-        </form>
-
-        <div class="session">
-            <h2>Sesion</h2>
-            <p id="sessionInfo">Sin autenticar</p>
-            <button id="logoutBtn" type="button">Salir</button>
+    <section id="catalogo" class="section catalog-section">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Coleccion activa</p>
+                <h2>Catalogo conectado al backend</h2>
+            </div>
+            <button id="reloadProducts" class="button compact" type="button">Actualizar</button>
         </div>
+        <div id="products" class="product-grid" aria-live="polite"></div>
     </section>
 
-    <section id="catalogo" class="section">
-        <div class="section-title">
-            <h2>Catalogo</h2>
-            <button id="reloadProducts" type="button">Actualizar</button>
+    <section id="checkout" class="section checkout-band">
+        <div class="checkout-copy">
+            <p class="eyebrow">Datos previos al pago</p>
+            <h2>Envio y comprador</h2>
+            <p>Estos datos viajan al backend para crear el pedido pendiente. La referencia y la firma de integridad se generan en Spring Boot antes de abrir Wompi.</p>
         </div>
-        <div id="products" class="product-grid"></div>
-    </section>
-
-    <section id="checkout" class="section checkout">
-        <h2>Datos de envio</h2>
-        <form id="shippingForm">
-            <label>Recibe <input name="recipientName" value="Cliente Demo" required></label>
-            <label>Ciudad <input name="city" value="Villavicencio" required></label>
-            <label>Direccion <input name="addressLine" value="Calle 10 # 20-30" required></label>
-            <label>Telefono <input name="phone" value="3001234567" required></label>
+        <form id="shippingForm" class="shipping-form">
+            <label>Recibe
+                <input name="recipientName" value="Cliente Demo" required>
+            </label>
+            <label>Ciudad
+                <input name="city" value="Villavicencio" required>
+            </label>
+            <label>Direccion
+                <input name="addressLine" value="Calle 10 # 20-30" required>
+            </label>
+            <label>Telefono
+                <input name="phone" value="3001234567" required>
+            </label>
         </form>
     </section>
 
-    <section id="pedidos" class="section">
-        <div class="section-title">
-            <h2>Mis pedidos</h2>
-            <button id="loadOrders" type="button">Ver historial</button>
+    <section id="pedidos" class="section data-section">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Seguimiento</p>
+                <h2>Mis pedidos</h2>
+            </div>
+            <button id="loadOrders" class="button compact" type="button">Ver historial</button>
         </div>
         <div id="orders" class="table-wrap"></div>
     </section>
 
-    <section id="admin" class="section">
-        <div class="section-title">
-            <h2>Panel admin</h2>
-            <button id="loadAdminOrders" type="button">Cargar pedidos</button>
+    <section id="admin" class="section data-section">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Operaciones</p>
+                <h2>Panel administrador</h2>
+            </div>
+            <button id="loadAdminOrders" class="button compact" type="button">Cargar pedidos</button>
         </div>
-        <p class="hint">Usuario demo: admin@macondo.local / admin12345</p>
         <div id="adminOrders" class="table-wrap"></div>
+    </section>
+
+    <section class="experience-strip">
+        <img src="/images/pie-de-pagina.jpg" alt="Mostrador de joyeria Macondo">
+        <div>
+            <p class="eyebrow">Presentacion final</p>
+            <h2>Flujo demostrable de punta a punta</h2>
+            <p>Login, seleccion del producto, reserva, apertura de Wompi, webhook y actualizacion de estado del pedido quedan en una sola experiencia.</p>
+        </div>
     </section>
 </main>
 
