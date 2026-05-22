@@ -1,6 +1,6 @@
-package com.macondo.jewelry.security;
+package com.macondo.jewelry.Security;
 
-import com.macondo.jewelry.user.AppUser;
+import com.macondo.jewelry.Entity.AppUser;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;

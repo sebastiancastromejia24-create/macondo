@@ -1,8 +1,8 @@
-package com.macondo.jewelry.security;
+package com.macondo.jewelry.Security;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.macondo.jewelry.user.AppUser;
+import com.macondo.jewelry.Entity.AppUser;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Base64;

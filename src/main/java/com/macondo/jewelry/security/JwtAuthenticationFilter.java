@@ -1,4 +1,4 @@
-package com.macondo.jewelry.security;
+package com.macondo.jewelry.Security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.macondo.jewelry.security;
+package com.macondo.jewelry.Security;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

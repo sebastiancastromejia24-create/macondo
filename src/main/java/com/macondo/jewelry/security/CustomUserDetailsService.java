@@ -1,6 +1,6 @@
-package com.macondo.jewelry.security;
+package com.macondo.jewelry.Security;
 
-import com.macondo.jewelry.user.UserRepository;
+import com.macondo.jewelry.Repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

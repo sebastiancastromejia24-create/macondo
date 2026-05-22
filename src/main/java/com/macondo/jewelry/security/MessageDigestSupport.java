@@ -1,4 +1,4 @@
-package com.macondo.jewelry.security;
+package com.macondo.jewelry.Security;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

@@ -1,8 +1,8 @@
-package com.macondo.jewelry.config;
+package com.macondo.jewelry.Config;
 
-import com.macondo.jewelry.user.AppUser;
-import com.macondo.jewelry.user.UserRepository;
-import com.macondo.jewelry.user.UserRole;
+import com.macondo.jewelry.Entity.AppUser;
+import com.macondo.jewelry.Repository.UserRepository;
+import com.macondo.jewelry.Entity.UserRole;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nelson Joyería</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <ul class="menu">
+
+    <li><a href="index.html">Inicio</a></li>
+
+    <li><a href="eventos.html">Eventos</a></li>
+
+    <li class="logo">
+        <h1>Macondo</h1>
+        <span>JOYERÍA</span>
+    </li>
+
+    <li><a href="registro.html">Registro</a></li>
+
+    <li><a href="login.html">Login</a></li>
+
+    <!-- CARRITO -->
+    <li class="cart-icon">
+
+        <a href="#" onclick="toggleCart()">
+            🛒
+            <span id="cart-count">0</span>
+        </a>
+
+    </li>
+
+</ul>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <!-- SLIDER -->
+        <div class="slider">
+
+            <!-- IMAGEN 1 -->
+            <div class="slide active">
+                <img src="Imagenes/portada.jpg" alt="">
+            </div>
+
+            <!-- IMAGEN 2 -->
+            <div class="slide">
+                <img src="Imagenes/portada 2.jpg" alt="">
+            </div>
+
+            <!-- IMAGEN 3 -->
+            <div class="slide">
+                <img src="Imagenes/portada 3.webp" alt="">
+            </div>
+
+        </div>
+
+        <!-- CAPA OSCURA -->
+        <div class="overlay"></div>
+
+        <!-- CONTENIDO -->
+        <div class="hero-content">
+
+            <h2>Macondo</h2>
+            <p>JOYERÍA</p>
+
+            <button>Ver Colección</button>
+
+        </div>
+
+    </section>
+
+    <!-- COLECCIÓN -->
+    <section class="collection">
+
+        <div class="title">
+            <h2>NUESTRA COLECCIÓN</h2>
+            <p>Descubre nuestra joyería de lujo</p>
+        </div>
+
+        <div class="products">
+
+            <div class="card">
+                <img src="Imagenes/11.webp" alt="">
+                <button>Ver Más</button>
+            </div>
+
+            <div class="card">
+                <img src="Imagenes/12.jpeg" alt="">
+                <button>Ver Más</button>
+            </div>
+
+            <div class="card">
+                <img src="Imagenes/13.webp" alt="">
+                <button>Ver Más</button>
+            </div>
+
+            <div class="card">
+                <img src="Imagenes/14.webp" alt="">
+                <button>Ver Más</button>
+            </div>
+
+            <div class="card">
+                <img src="Imagenes/15.webp" alt="">
+                <button>Ver Más</button>
+            </div>
+
+            <div class="card">
+                <img src="Imagenes/16.jpg" alt="">
+                <button>Ver Más</button>
+            </div>
+
+            <div class="card">
+                <img src="Imagenes/17.jpg" alt="">
+                <button>Ver Más</button>
+            </div>
+
+            <div class="card">
+                <img src="Imagenes/18.avif" alt="">
+                <button>Ver Más</button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section class="experience">
+
+        <div class="title">
+            <h2>UNA EXPERIENCIA EXCLUSIVA</h2>
+            <p>Atención personalizada en un entorno sofisticado</p>
+        </div>
+
+        <div class="experience-box">
+            <img src="Imagenes/pie de pagina.jpg" alt="">
+        </div>
+
+        <div class="experience-text">
+            <h3>Visítanos y déjate cautivar por el lujo</h3>
+
+            <p>
+                Te ofrecemos asesoramiento y un servicio a medida
+                junto a ideal.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-left">
+
+            <h4>Contacto</h4>
+
+            <p>Tel: +57 310 123 456</p>
+            <p>Email: info@Macondojoyeria.com</p>
+            <p>Ubicación: Villavicencio, Colombia</p>
+
+        </div>
+
+        <div class="footer-right">
+
+            <h4>Síguenos</h4>
+
+            <div class="socials">
+
+                <a href="#">f</a>
+                <a href="#">t</a>
+                <a href="#">ig</a>
+                <a href="#">p</a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        let slides = document.querySelectorAll('.slide');
+
+        let index = 0;
+
+        function changeSlide(){
+
+            slides[index].classList.remove('active');
+
+            index++;
+
+            if(index >= slides.length){
+                index = 0;
+            }
+
+            slides[index].classList.add('active');
+        }
+
+        /* CAMBIO AUTOMÁTICO */
+
+        setInterval(changeSlide, 4000);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: macondo-jewelry-api
+    env: docker
+    plan: free
+    healthCheckPath: /swagger-ui.html
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: DATABASE_DRIVER
+        value: org.postgresql.Driver
+      - key: DATABASE_DIALECT
+        value: org.hibernate.dialect.PostgreSQLDialect
+      - key: JPA_DDL_AUTO
+        value: update
+      - key: JWT_SECRET
+        sync: false
+      - key: WOMPI_PUBLIC_KEY
+        sync: false
+      - key: WOMPI_INTEGRITY_SECRET
+        sync: false
+      - key: WOMPI_WEBHOOK_SECRET
+        sync: false
