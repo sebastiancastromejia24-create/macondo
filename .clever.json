@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "app_id": "app_6ede98d9-36fc-4dca-8ff2-4a0a19615914",
+      "org_id": "user_aecc488e-6c80-47ab-80bb-1d3f3932ecc9",
+      "deploy_url": "https://push-n3-par-clevercloud-customers.services.clever-cloud.com/app_6ede98d9-36fc-4dca-8ff2-4a0a19615914.git",
+      "git_ssh_url": "git+ssh://git@push-n3-par-clevercloud-customers.services.clever-cloud.com/app_6ede98d9-36fc-4dca-8ff2-4a0a19615914.git",
+      "name": "macondo-api",
+      "alias": "macondo-api"
+    }
+  ]
+}

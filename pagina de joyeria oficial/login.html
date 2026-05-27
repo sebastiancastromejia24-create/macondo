@@ -1,105 +1,154 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Login | Macondo</title>
 
     <link rel="stylesheet" href="login.css">
 
     <!-- FUENTES -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <header class="navbar">
+<!-- NAVBAR -->
+<header class="navbar">
 
-        <ul class="menu">
+    <ul class="menu">
 
-            <li><a href="index.html">Inicio</a></li>
+        <li>
+            <a href="index.html">
+                Inicio
+            </a>
+        </li>
 
-            <li><a href="eventos.html">Eventos</a></li>
+        <li>
+            <a href="eventos.html">
+                Eventos
+            </a>
+        </li>
 
-            <li class="logo">
-                <h1>MACONDO</h1>
-                <span>JOYERÍA</span>
-            </li>
+        <li class="logo">
 
-            <li><a href="registro.html">Registro</a></li>
+            <h1>MACONDO</h1>
 
-            <li><a class="active" href="login.html">Login</a></li>
+            <span>JOYERÍA</span>
 
-        </ul>
+        </li>
 
-    </header>
+        <li>
+            <a href="registro.html">
+                Registro
+            </a>
+        </li>
 
-    <!-- LOGIN -->
-    <section class="login-container">
+        <li>
+            <a class="active" href="login.html">
+                Login
+            </a>
+        </li>
 
-        <!-- IZQUIERDA -->
-        <div class="left-side">
+    </ul>
 
-            <div class="overlay"></div>
+</header>
 
-            <div class="left-content">
+<!-- LOGIN -->
+<section class="login-container">
 
-                <h2>BIENVENIDO</h2>
+    <!-- IZQUIERDA -->
+    <div class="left-side">
 
-                <p>
-                    Accede a tu cuenta y descubre
-                    el lujo exclusivo de Macondo.
-                </p>
+        <div class="overlay"></div>
 
-            </div>
+        <div class="left-content">
+
+            <h2>BIENVENIDO</h2>
+
+            <p>
+                Accede a tu cuenta y descubre
+                el lujo exclusivo de Macondo.
+            </p>
 
         </div>
 
-        <!-- DERECHA -->
-        <div class="right-side">
+    </div>
 
-            <div class="form-box">
+    <!-- DERECHA -->
+    <div class="right-side">
 
-                <h2>INICIAR SESIÓN</h2>
+        <div class="form-box">
 
-                <form>
+            <h2>INICIAR SESIÓN</h2>
 
-                    <input type="email" placeholder="Correo electrónico">
+            <form onsubmit="login(event)">
 
-                    <input type="password" placeholder="Contraseña">
+                <input
+                        type="email"
+                        id="correo"
+                        placeholder="Correo electrónico"
+                        required
+                >
 
-                    <div class="options">
+                <input
+                        type="password"
+                        id="password"
+                        placeholder="Contraseña"
+                        required
+                >
 
-                        <label>
-                            <input type="checkbox">
-                            Recordarme
-                        </label>
+                <div class="options">
 
-                        <a href="#">
-                            ¿Olvidaste tu contraseña?
-                        </a>
+                    <label>
 
-                    </div>
+                        <input type="checkbox">
 
-                    <button>INGRESAR</button>
+                        Recordarme
 
-                </form>
+                    </label>
 
-                <p class="register-link">
+                    <a href="#">
 
-                    ¿No tienes cuenta?
-                    <a href="registro.html">
-                        Regístrate
+                        ¿Olvidaste tu contraseña?
+
                     </a>
 
-                </p>
+                </div>
 
-            </div>
+                <button type="submit">
+
+                    INGRESAR
+
+                </button>
+
+            </form>
+
+            <p class="register-link">
+
+                ¿No tienes cuenta?
+
+                <a href="registro.html">
+
+                    Regístrate
+
+                </a>
+
+            </p>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
+
+<script src="base.js"></script>
 
 </body>
+
 </html>
