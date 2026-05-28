@@ -9,7 +9,7 @@ async function login(event) {
 
     try {
 
-        const response = await fetch(`${API_URL}/api/auth/login`, {
+        const response = await fetch(`${API_URL}/api/v1/auth/login`, {
 
             method: "POST",
 
