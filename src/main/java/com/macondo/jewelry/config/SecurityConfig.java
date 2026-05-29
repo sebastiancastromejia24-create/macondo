@@ -1,4 +1,4 @@
-package com.macondo.jewelry.Config;
+package com.macondo.jewelry.config;
 
 import com.macondo.jewelry.Security.JwtAuthenticationFilter;
 import com.macondo.jewelry.Security.SecurityProperties;
