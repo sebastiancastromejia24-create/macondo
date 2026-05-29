@@ -1,4 +1,4 @@
-const API = window.MACONDO_API_BASE || "/api/v1";
+const API = "https://app-6ede98d9-36fc-4dca-8ff2-4a0a19615914.cleverapps.io/api/v1";
 const state = {
     token: localStorage.getItem("macondo_token"),
     user: JSON.parse(localStorage.getItem("macondo_user") || "null")
